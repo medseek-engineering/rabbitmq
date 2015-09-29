@@ -1,5 +1,7 @@
 FROM debian:jessie
 
+MAINTAINER Ravi Kushappanavar <ravi.k-ext@medseek.com>
+
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -g 100000 -r rabbitmq && useradd -u 100000 -r -d /var/lib/rabbitmq -m -g rabbitmq rabbitmq
 
