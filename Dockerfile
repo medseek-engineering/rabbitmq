@@ -51,5 +51,5 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 EXPOSE 5672
 CMD ["rabbitmq-server"]
 
-RUN rabbitmq-plugins enable --offline rabbitmq_management
+RUN rabbitmq-plugins enable rabbitmq_management
 EXPOSE 15672
