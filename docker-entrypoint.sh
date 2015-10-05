@@ -60,14 +60,4 @@ if [ "$1" = 'rabbitmq-server' ]; then
 	set -- gosu rabbitmq "$@"
 fi
 
-# Create users
-rabbitmqctl add_user rabbitmq rabbitmq; \
-
-# Set user rights
-rabbitmqctl set_user_tags rabbitmq administrator
-
-# Set vhost permissions
-rabbitmqctl set_permissions -p / rabbitmq ".*" ".*" ".*"; \
-) &
-
 exec "$@"
