@@ -47,12 +47,6 @@ RUN ln -sf /var/lib/rabbitmq/.erlang.cookie /root/
 
 RUN rabbitmq-plugins enable rabbitmq_management
 
-RUN rabbitmqctl add_vhost predict
-RUN rabbitmqctl add_user rabbitmq rabbitmq
-RUN rabbitmqctl set_user_tags rabbitmq administrator
-RUN rabbitmqctl set_permissions -p / rabbitmq ".*" ".*" ".*"
-RUN rabbitmqctl set_permissions -p predict rabbitmq  ".*" ".*" ".*"
-
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
