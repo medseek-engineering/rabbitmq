@@ -3,7 +3,7 @@ FROM debian:jessie
 MAINTAINER Ravi Kushappanavar <ravi.k-ext@medseek.com>
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -g 100000 -r rabbitmq && useradd -u 100000 -r -d /var/lib/rabbitmq -m -g rabbitmq rabbitmq
+RUN groupadd -g 100005 -r rabbitmq && useradd -u 100005 -r -d /var/lib/rabbitmq -m -g rabbitmq rabbitmq
 
 RUN apt-get update && apt-get install -y curl ca-certificates --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
