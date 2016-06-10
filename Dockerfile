@@ -57,5 +57,5 @@ RUN ln -sf /usr/lib/rabbitmq/lib/rabbitmq_server-$RABBITMQ_DEB_VERSION/plugins /
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-EXPOSE 4369 5671 5672 25672
+EXPOSE 4369 5671 5672 25672 15672
 CMD ["rabbitmq-server"]
