@@ -33,14 +33,14 @@ ENV RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
 # http://www.rabbitmq.com/install-debian.html
 
 ENV RABBITMQ_DEB_VERSION 3.6.1-1
-ENV RABBITMQ_VERSION 3.631
+ENV RABBITMQ_VERSION 3.6.1
 
 #Install erlang
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		erlang-nox erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap
 
 #Install Rabbit via Dpkg
-RUN wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server_$RABBITMQ_DEB_VERSION_all.deb && dpkg -i rabbitmq-server_$RABBITMQ_DEB_VERSION_all.deb
+RUN wget "http://www.rabbitmq.com/releases/rabbitmq-server/v$RABBITMQ_VERSION/rabbitmq-server_$RABBITMQ_DEB_VERSION_all.deb" && dpkg -i "rabbitmq-server_$RABBITMQ_DEB_VERSION_all.deb"
 
 # /usr/sbin/rabbitmq-server has some irritating behavior, and only exists to "su - rabbitmq /usr/lib/rabbitmq/bin/rabbitmq-server ..."
 ENV PATH /usr/lib/rabbitmq/bin:$PATH
