@@ -7,7 +7,7 @@ RUN groupadd -g 100005 -r rabbitmq && useradd -u 100005 -r -d /var/lib/rabbitmq 
 
 # grab gosu for easy step-down from root
 # https://github.com/rabbitmq/rabbitmq-server/commit/53af45bf9a162dec849407d114041aad3d84feaf
-ENV GOSU_VERSION=1.7 RABBITMQ_VERSION=3.6.1 RABBITMQ_DEB_VERSION=3.6.1-1 RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
+ENV GOSU_VERSION=1.7 RABBITMQ_VERSION=3.6.2 RABBITMQ_DEB_VERSION=3.6.2-1 RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
 RUN set -x \
 	&& apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/* \
 	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
