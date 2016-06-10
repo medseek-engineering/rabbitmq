@@ -36,7 +36,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # http://www.rabbitmq.com/install-debian.html
 #Install Rabbit via Dpkg
-RUN wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server_3.6.1-1_all.deb && dpkg -i rabbitmq-server_3.6.1-1_all.deb
+RUN wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server_3.6.1-1_all.deb
+RUN dpkg -i rabbitmq-server_3.6.1-1_all.deb
 
 # /usr/sbin/rabbitmq-server has some irritating behavior, and only exists to "su - rabbitmq /usr/lib/rabbitmq/bin/rabbitmq-server ..."
 ENV PATH /usr/lib/rabbitmq/bin:$PATH
