@@ -30,7 +30,7 @@ RUN echo 'deb http://packages.erlang-solutions.com/debian jessie contrib' > /etc
 
 #Install erlang
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		erlang-nox erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap
+		erlang-nox erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap logrotate
 
 # http://www.rabbitmq.com/install-debian.html
 #Install Rabbit via Dpkg
