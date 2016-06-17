@@ -56,7 +56,7 @@ if [ "$1" = 'rabbitmq-server' ]; then
 		EOF
 	fi
 
-	( sleep 5 ; \
+	( sleep 10 ; \
         # Create predict vhost
 	rabbitmqctl add_vhost predict ; \
         # Create Rabbitmq user
