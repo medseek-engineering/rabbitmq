@@ -16,6 +16,8 @@ RUN set -x \
 	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
 	&& wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
 	&& wget "http://www.rabbitmq.com/releases/rabbitmq-server/v$RABBITMQ_VERSION/rabbitmq-server_${RABBITMQ_DEB_VERSION}_all.deb" \
+        && wget -O /usr/local/bin/rabbitmqadmin "https://raw.githubusercontent.com/rabbitmq/rabbitmq-management/rabbitmq_v3_6_1/bin/rabbitmqadmin" \
+        && chmod +x /usr/local/bin/rabbitmqadmin \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
 	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
@@ -31,6 +33,7 @@ RUN set -x \
         && cd .. \
 	&& rm "Python-$PYTHON_VERSION.tar.xz" \
 	&& rm -rf "Python-$PYTHON_VERSION" \
+        && ln -s /opt/python3/bin/python3 /usr/bin/python \
 	&& apt-get purge -y --auto-remove ca-certificates wget
 
 # Add the officially endorsed Erlang debian repository:
