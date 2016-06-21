@@ -22,13 +22,15 @@ RUN set -x \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu \
 	&& gosu nobody true \
-	&& wget "http://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.bz2" \
-	&& tar -xjf Python-$PYTHON_VERSIONtar.bz2 cd Python-$PYTHON_VERSION \
+	&& wget "http://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz" \
+	&& tar -xf "Python-$PYTHON_VERSION.tar.xz" \
+        && cd "Python-$PYTHON_VERSION" \
 	&& ./configure --prefix=/opt/python3 \
-	&& make
-	&& make install
-	&& rm "Python-$PYTHON_VERSION.tar.bz2"
-	&& rm -rf "Python-$PYTHON_VERSION"
+	&& make \
+	&& make install \
+        && cd .. \
+	&& rm "Python-$PYTHON_VERSION.tar.xz" \
+	&& rm -rf "Python-$PYTHON_VERSION" \
 	&& apt-get purge -y --auto-remove ca-certificates wget
 
 # Add the officially endorsed Erlang debian repository:
