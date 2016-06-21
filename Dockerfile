@@ -9,7 +9,9 @@ RUN groupadd -g 100005 -r rabbitmq && useradd -u 100005 -r -d /var/lib/rabbitmq 
 # https://github.com/rabbitmq/rabbitmq-server/commit/53af45bf9a162dec849407d114041aad3d84feaf
 ENV GOSU_VERSION=1.7 RABBITMQ_VERSION=3.6.1 RABBITMQ_DEB_VERSION=3.6.1-1 RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
 RUN set -x \
-	&& apt-get update && apt-get install -y --no-install-recommends ca-certificates wget build-essential libncursesw5-dev libreadline5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev tk-dev \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends ca-certificates wget \
+	&& apt-get install -y build-essential libncursesw5-dev libreadline-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev tk-dev \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
 	&& wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
