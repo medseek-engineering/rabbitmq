@@ -67,7 +67,8 @@ if [ "$1" = 'rabbitmq-server' ]; then
 	rabbitmqctl set_permissions -p predict rabbitmq ".*" ".*" ".*" ; \
         # Provide access to / vhost
 	rabbitmqctl set_permissions -p / rabbitmq ".*" ".*" ".*" ; ) &
-
+	# Create medseek-api exchange
+        rabbitmqadmin declare exchange name=medseek-api type=topic durable=false
 	chown -R rabbitmq /var/lib/rabbitmq
 	set -- gosu rabbitmq "$@"
 fi
