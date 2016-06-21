@@ -7,7 +7,7 @@ RUN groupadd -g 100005 -r rabbitmq && useradd -u 100005 -r -d /var/lib/rabbitmq 
 
 # grab gosu for easy step-down from root
 # https://github.com/rabbitmq/rabbitmq-server/commit/53af45bf9a162dec849407d114041aad3d84feaf
-ENV GOSU_VERSION=1.7 RABBITMQ_VERSION=3.6.1 RABBITMQ_DEB_VERSION=3.6.1-1 RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
+ENV PYTHON_VERSON=3.5.1 GOSU_VERSION=1.7 RABBITMQ_VERSION=3.6.1 RABBITMQ_DEB_VERSION=3.6.1-1 RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends ca-certificates wget \
@@ -22,13 +22,13 @@ RUN set -x \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu \
 	&& gosu nobody true \
-	&& wget http://www.python.org/ftp/python/3.x/Python-3.x.tar.bz2 \
-	&& tar -xjf Python-3.xtar.bz2 cd Python-3.x \
+	&& wget "http://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.bz2" \
+	&& tar -xjf Python-$PYTHON_VERSIONtar.bz2 cd Python-$PYTHON_VERSION \
 	&& ./configure --prefix=/opt/python3 \
 	&& make
 	&& make install
-	&& rm Python-3.x.tar.bz2
-	&& rm -rf Python-3.x
+	&& rm Python-$PYTHON_VERSION.tar.bz2
+	&& rm -rf Python-$PYTHON_VERSION
 	&& apt-get purge -y --auto-remove ca-certificates wget
 
 # Add the officially endorsed Erlang debian repository:
