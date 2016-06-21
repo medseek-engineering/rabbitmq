@@ -7,7 +7,7 @@ RUN groupadd -g 100005 -r rabbitmq && useradd -u 100005 -r -d /var/lib/rabbitmq 
 
 # grab gosu for easy step-down from root
 # https://github.com/rabbitmq/rabbitmq-server/commit/53af45bf9a162dec849407d114041aad3d84feaf
-ENV PYTHON_VERSON=3.5.1 GOSU_VERSION=1.7 RABBITMQ_VERSION=3.6.1 RABBITMQ_DEB_VERSION=3.6.1-1 RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
+ENV PYTHON_VERSION=3.5.1 GOSU_VERSION=1.7 RABBITMQ_VERSION=3.6.1 RABBITMQ_DEB_VERSION=3.6.1-1 RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends ca-certificates wget \
@@ -27,8 +27,8 @@ RUN set -x \
 	&& ./configure --prefix=/opt/python3 \
 	&& make
 	&& make install
-	&& rm Python-$PYTHON_VERSION.tar.bz2
-	&& rm -rf Python-$PYTHON_VERSION
+	&& rm "Python-$PYTHON_VERSION.tar.bz2"
+	&& rm -rf "Python-$PYTHON_VERSION"
 	&& apt-get purge -y --auto-remove ca-certificates wget
 
 # Add the officially endorsed Erlang debian repository:
