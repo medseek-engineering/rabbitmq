@@ -55,21 +55,9 @@ if [ "$1" = 'rabbitmq-server' ]; then
 			].
 		EOF
 	fi
-
-	( sleep 10 ; \
-        # Create predict vhost
-	rabbitmqctl add_vhost predict ; \
-        # Create Rabbitmq user
-	rabbitmqctl add_user rabbitmq rabbitmq ; \
-        # Set administrator user tag
-	rabbitmqctl set_user_tags rabbitmq administrator ; \
-        # Provide access to predict vhost
-	rabbitmqctl set_permissions -p predict rabbitmq ".*" ".*" ".*" ; \
-        # Provide access to / vhost
-	rabbitmqctl set_permissions -p / rabbitmq ".*" ".*" ".*" ; ) &
-	# Create medseek-api exchange
-        rabbitmqadmin declare exchange name=medseek-api type=topic durable=false
+	
 	chown -R rabbitmq /var/lib/rabbitmq
+	
 	set -- gosu rabbitmq "$@"
 fi
 
